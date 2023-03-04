@@ -1,0 +1,13 @@
+Lab 1,2: NASA problem
+
+Lab 3: Regarding destroyList function in linked list implementation of stack(linked_list.c)(solved. It works)
+
+Lab 3:the time usage doesnt make sense for the cgDriver file. Ask
+
+Lab 4 Task 2, csv file reading is creating problems(solved using fscanf)
+
+Lab 5 Task 4. Garbage values are being printed(solved. Changed the return types of the functions as long long)
+
+Lab 6 Task 1. No error other than the fact that the time taken is being always shown to be zero for all three partitions.
+
+Lab 6 HE1: Just doesnt seem to work. The string comparision is not working. It is always showing less than.
