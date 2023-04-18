@@ -66,6 +66,15 @@ static process **read_processes_from_file(char *filename, int *num_processes_ptr
     return processes;
 }
 
+int arrived_process(linked_deque* ld,process** processes,int time,int num_processes){
+    while((*(processes))->arrival<=time && num_processes!=0){
+        add_last_linked_deque(ld,**processes);
+        processes++;
+        num_processes--;
+    }
+    return num_processes;
+}
+
 
 void visualize_round_robin(char *path) {
     int num_processes;
@@ -75,6 +84,54 @@ void visualize_round_robin(char *path) {
     printf("%-10s%-15s%-15s%-15s%-15s\n", "Process", "Arrival Time", "Burst Time", "Waiting Time", "Turnaround Time");
 
     linked_deque *ld = create_linked_process_deque();
+
+    if(num_processes==0) return;
+
+    add_first_linked_deque(ld,**(processes));
+    process* current_p=ld->list->head->process;
+    processes++;
+
+    int process_in_queue=num_processes-1;
+    int time=0;
+
+    while(!is_empty_linked_deque(ld)){
+        remove_first_linked_deque(ld,current_p);
+        if(current_p->cpu_burst>TIME_QUANTUM){
+            printf("5\n");
+            current_p->cpu_burst-=3;
+            time+=TIME_QUANTUM;
+            printf("Time is:%d\n",time);
+            if(process_in_queue==0) ;
+
+            else{
+                printf("14\n");
+                process_in_queue=arrived_process(ld,processes,time,process_in_queue);
+            }
+            //remove_first_linked_deque(ld,current_p);
+            printf("7\n");
+            //printf("%d\n",get_size_linked_deque(ld));
+            add_last_linked_deque(ld,*(current_p));
+            printf("8\n");
+            current_p=ld->list->head->process;
+        }
+
+        else if(current_p->cpu_burst<=TIME_QUANTUM){
+            printf("6\n");
+            time+=current_p->cpu_burst;
+            printf("Time is:%d\n",time);
+            if(process_in_queue==0) ;
+            else{
+                printf("12\n");
+                process_in_queue=arrived_process(ld,processes,time,process_in_queue);
+            }
+            printf("9\n");
+            //remove_first_linked_deque(ld,current_p);
+            printf("10\n");
+            print_stats(*current_p);
+            if(!is_empty_linked_deque(ld)) current_p=ld->list->head->process;
+            printf("11\n");
+        }
+    }
 
     // COMPLETE using the ld for storing processes as described
 

@@ -1,9 +1,11 @@
 #include "linked_deque.h"
 #include "process.h"
+#include<stdio.h>
 
 #define SIZE 5
 
 int main() {
+    
     linked_deque *list = create_linked_process_deque();
     process p1 = {"p1", 1, 0, 8, 0, 0, 8};
     process p2 = {"p2", 2, 1, 4, 0, 0, 4};
@@ -11,10 +13,15 @@ int main() {
     process p4 = {"p4", 4, 2, 5, 0, 0, 5};
     process p5 = {"p5", 5, 3, 2, 0, 0, 2};
 
+    
     add_first_linked_deque(list, p1);
+    print_linked_deque(list);
     add_last_linked_deque(list, p2);
+    print_linked_deque(list);
     add_last_linked_deque(list, p3);
+    print_linked_deque(list);
     add_last_linked_deque(list, p4);
+    print_linked_deque(list);
     add_last_linked_deque(list, p5);
     print_linked_deque(list);
     process curr;

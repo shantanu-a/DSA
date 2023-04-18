@@ -1,5 +1,6 @@
 #include "linkedlist.h"
 #include "process.h"
+#include<stdio.h>
 #define SIZE 5
 
 int main()
@@ -12,11 +13,16 @@ int main()
     process p3 = {"p3", 3, 4, 9, 0, 0, 9};
     process p4 = {"p4", 4, 2, 5, 0, 0, 5};
     process p5 = {"p5", 5, 3, 2, 0, 0, 2};
+    //print_linked_list(list);
 
     add_first_to_linked_list(list, p1);
+    print_linked_list(list);
     add_last_to_linked_list(list, p2);
+    print_linked_list(list);
     add_last_to_linked_list(list, p3);
+    print_linked_list(list);
     add_last_to_linked_list(list, p4);
+    print_linked_list(list);
     add_last_to_linked_list(list, p5);
     print_linked_list(list);
 
