@@ -1,6 +1,23 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<math.h>
+
+
+
+int hash1(int key,int size){
+    return key % size;
+}
+
+int hash2(int key,int size){
+    int p = (int)log2(size);
+    int power_of_2_just_less_than_size= (int)pow(2, p);
+    return (int)(key % power_of_2_just_less_than_size);
+}
+
+int hash3(int key,int size){
+    return key % 997;
+}
 
 int mulHash(int key, int size)
 {
@@ -9,11 +26,16 @@ int mulHash(int key, int size)
     return (int)(size*frac);
 }
 
-// struct student
-// {
-//     long long int ID;
-//     char name[30];
-// };
+int hash4(int key,int size){
+    return key % 887;
+}
+
+int hash5(long long key,int size){
+    long long value=key*997;
+    int final_value=value%size;
+    return final_value;
+}
+
 
 typedef struct node* NODE;
 struct node{
@@ -66,18 +88,16 @@ void insertIntoList(LIST ls,NODE node){
 
 
 int main(){
-    printf("1\n");
     FILE* fp=fopen("t1_data.txt","r");
 
     if(fp==NULL){
         printf("Error opening file");
         return 1;
     }
-    printf("2\n");
+
     char* buffer=(char*)malloc(1024*sizeof(char));
     fgets(buffer,1024,fp);
     int num_records=atoi(buffer);
-    printf("%d\n",num_records);
 
     LIST hash[2*num_records];
 
@@ -85,28 +105,23 @@ int main(){
         
         hash[i]=createNewList();
     }
-    printf("3\n");
+
     int collisions=0;
 
 
     int key;
     char* name=(char*)malloc(100*sizeof(char));
-    int i=0;
 
-    while(i!=500){
-        // printf("4\n");
-        fscanf(fp, "%d,%[^\n]\n", &key, name);
-        int hash_value=key%(2*num_records);
+    while(fscanf(fp, "%d,%[^\n]\n", &key, name)!=-1){
+        int hash_value=mulHash(key,1000);
 
         NODE node=createNewNode(name);
 
         if(hash[hash_value]->occupied==1) collisions++;
 
         insertIntoList(hash[hash_value],node);
-        i++;
 
     }
     printf("The number of collisions are %d\n",collisions);
-
 }
 
