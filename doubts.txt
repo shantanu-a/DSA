@@ -4,7 +4,7 @@ Lab 3: Regarding destroyList function in linked list implementation of stack(lin
 
 Lab 3:the time usage doesnt make sense for the cgDriver file. Ask
 
-Lab 4 Task 2, csv file reading is creating problems(solved using fscanf)
+Lab 4 Task 2, csv file reading is creating problems(solved using fscanf).Done.
 
 Lab 5 Task 4. Garbage values are being printed(solved. Changed the return types of the functions as long long)
 

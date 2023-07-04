@@ -1,0 +1,21 @@
+1)Why is STR better than R-tree insertion
+
+R-tree by inserting one object at a time as specified by Guttman has several disadvantages:
+(a) high load time, 
+(b) sub-optimal space utilization, and, most important, 
+(c) poor Rtree structure requiring the retrieval of an unduly large number of nodes in order to satisfy a query. 
+
+2)Each node of the R-tree stores a maximum of b entries. 
+Each entry consists of a rectangle R and a pointer P. For nodes at the leaf level, R is the bounding box of an actual object pointed to by P. At internal nodes, R is the minimum bounding rectangle (MBR) of all rectangles stored in the subtree pointed to by P
+
+3)Nearest-X (NX):The rectangles are sorted by x-coordinate of the center of rectangle.
+
+4)Hilbert sort: First we have to draw the Hilbert curve and sort on the basis of the distance along the Hilbert curve from origin to center of rectangle. 
+The way the Hilbert curve works is that (its actually a family of curves). For the 4 by 4 square, we join the center of the bootom left square to the top left one to the top right one and finally to the bottom right in order. 
+The we can assume an 8 by 8 square to be made up of 4, 4 by 4 squares and draw the hilbert curve for the 4 by 4 squares and join the endpoints and make a slight adjustment so as to avoid intersecting curve. This way we build up the hilbert curve.
+
+5)How to make the adjustments for n-dimentional data?
+
+First, sort the hyperrectangles according to the first coordinate of their center. 
+Then divide the input set into S = [P^(1/k)] slabs, where a slab consists of a run of b.[P^(k-1)/k] consecutive hyper-rectangles from the sorted list. 
+Each slab is now processed recursively using the remaining k-1 coordinates (i.e., treated as a k - 1 dimensional data set).

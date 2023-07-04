@@ -1,0 +1,13 @@
+sortbyX
+This function takes a array of entries and the number of datapoints as parameters and sorts them according to the x-coordinate of the center using normal insertion sort.
+
+sortbyY
+This function will take the array of entries, slicesize and number of datapoints as parameters. As earlier mentioned the slicesize equals to S*M and all but the last slice must be maximally packed. We need to sort by the y-coordinate of the center of the rectangle slice by slice. Inorder to do that first we find the number of complete slices. So in the first for loop(which is actually nested) we will be sorting slice by slice using insertion sort.
+Now the next for loop is to handle the cases where there is a last slice which is not maximally filled. So this for loop will sort the remaining entries again using insertion sort.
+
+preorder traversal
+The preorder traversal traverses the tree in the order root, left and right. There are two cases here; one when we reach the leaf nodes(which is the base case) and the second being the case of internal nodes.
+When we reach the leaf node we simply print its MBR and then all the entries and the recursion ends there.
+The 2nd case we first print the node and then recursively call the function by passing its child nodes one by one.
+
+That pretty much sums up our code, so yeah thank you.
